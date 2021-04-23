@@ -10,7 +10,7 @@ public class Fader : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
 
-        StartCoroutine(FadeOutIn());
+        //StartCoroutine(FadeOutIn());
     }
 
     IEnumerator FadeOutIn()
@@ -20,7 +20,7 @@ public class Fader : MonoBehaviour
         yield return FadeIn(1f);
         print("Faded in");
     }
-    IEnumerator FadeOut(float time)
+    public IEnumerator FadeOut(float time)
     {
         while (canvasGroup.alpha < 1)
         {
@@ -29,7 +29,7 @@ public class Fader : MonoBehaviour
         }
     }
     
-    IEnumerator FadeIn(float time)
+    public IEnumerator FadeIn(float time)
     {
         while (canvasGroup.alpha > 0)
         {
