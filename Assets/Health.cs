@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, ISaveable
 {
     [SerializeField] private float healthPoints = 100f;
 
@@ -10,7 +10,8 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthPoints = GetComponent<BaseStats>().GetStat(Stats.Health);
+        //healthPoints = GetComponent<BaseStats>().GetStat(Stats.Health);
+        //print("setting health points..");
     }
 
     public bool IsDead()
@@ -51,5 +52,20 @@ public class Health : MonoBehaviour
         if (experience == null) return;
 
         experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+    }
+
+    public object CaptureState()
+    {
+        return healthPoints;
+    }
+
+    public void RestoreState(object state)
+    {
+        print("restoring..");
+        healthPoints = (float) state;
+        if (healthPoints <= 0)
+        {
+            Die();
+        }
     }
 }

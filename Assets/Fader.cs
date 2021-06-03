@@ -17,6 +17,7 @@ public class Fader : MonoBehaviour
     {
         yield return FadeOut(3f);
         print("Faded out");
+        yield return new WaitForSeconds(2f);
         yield return FadeIn(1f);
         print("Faded in");
     }
